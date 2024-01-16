@@ -14,6 +14,9 @@ from django.contrib import messages
 
 from django.contrib.auth.forms import  AuthenticationForm
 from .models import UserAccountModel
+#for logged out by deleting auth token
+from django.contrib.auth import get_user_model
+
 # Create your views here.
 
 
@@ -81,14 +84,26 @@ def user_login(request):
             else:
                 messages.warning(request, 'Login information incorrect')
                 return redirect('register')
+        else:
+            messages.warning(request, 'Login information incorrect')
+            return redirect('register')
     else:
         form = AuthenticationForm()
         return render(request, 'login.html', {'form' : form, 'type' : 'Sign in'})
     
     
     
+
+
 def user_logout(request):
     if request.user.is_authenticated:
-        request.user.auth_token.delete()
+        User = get_user_model()
+        try:
+            # Check if the user has an associated auth_token
+            auth_token = request.user.auth_token
+            auth_token.delete()
+        except User.auth_token.RelatedObjectDoesNotExist:
+            pass  # No auth_token associated with the user
+        
         logout(request)
         return redirect('login')

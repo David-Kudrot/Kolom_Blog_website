@@ -2,18 +2,6 @@
 {%  load crispy_forms_tags %}
 {% block content %}
 
-
-
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert alert-success alert-dismissible fade show mx-auto mt-2 pb-0" role="alert" style="width: 40%;">
-      <p class="text-center">{{ message }}</p>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  {% endfor %}
-{% endif %}
-
-
 <div class="row">
     
 <form class="col-md-4" style="margin: auto;" method="post">

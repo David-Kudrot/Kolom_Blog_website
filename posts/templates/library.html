@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block content %}
+
+
+
+
+<div class="content-wrapper">
+    <div class="inner-container container">
+        <div class="row">
+            <div class="section-header col-md-12">
+                <h2>Saved Posts</h2>
+            </div> <!-- /.section-header -->
+        </div> <!-- /.row -->
+        <div class="projects-holder-3">
+            <div class="projects-holder">
+                <div class="row">
+                    {% if saved_posts %}
+                      
+
+                    {% for post in saved_posts %}
+
+                    <div class="col-md-4 project-item mix design">
+                        <div class="project-thumb">
+                            <img src="{{ post.image.url }}" alt="">
+                            <div class="overlay-b">
+                                <div class="overlay-inner">
+                                    <a href="images/projects/project_1.jpg" class="fancybox fa fa-expand" title="Project Title Here"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-content project-detail">
+                            <h2>
+                                <a target="_blank" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+                            </h2>
+                            <p>{{ post.body|truncatewords:15 }}</p>
+                            <a href="{% url 'save_post' post.pk %}" class="btn btn-sm border-1  border-info">Save Post</a>
+                        </div>
+                    </div> <!-- /.project-item -->
+                      
+                    {% endfor %}
+
+
+                    {% else%}
+                    <h1 class="text-center">No saved posts</h1>
+                    {% endif %}
+                </div> <!-- /.row -->
+                <div class="load-more">
+                </div>
+            </div> <!-- /.projects-holder -->
+        </div> <!-- /.projects-holder-2 -->
+    </div> <!-- /.inner-content -->
+</div> <!-- /.content-wrapper -->
+  
+{% endblock content %}

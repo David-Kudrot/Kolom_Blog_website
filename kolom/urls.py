@@ -23,6 +23,8 @@ from .views import Home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home.as_view(), name='home'),
+    path('', Home.as_view(), name='post_list'),
+    path('category/<slug:category_slug>/', Home.as_view(), name='home_category'),
     path('accounts/', include('accounts.urls')),
     path('posts/', include('posts.urls')),
 ]

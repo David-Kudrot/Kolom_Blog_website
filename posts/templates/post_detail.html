@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+
+
+
+
+{% block content %}
+
+
+
+
+<div class="content-wrapper">
+    <div class="inner-container container">
+        <div class="row">
+            <div class="section-header col-md-12">
+                <h2>Post Details</h2>
+            </div> <!-- /.section-header -->
+        </div> <!-- /.row -->
+        <div class="row">
+            <div class="blog-image col-md-12">
+                <img src="{{ post.image.url }}" alt="Blog 1">
+            </div> <!-- /.blog-image -->
+            <div class="blog-info col-md-12">
+                <div class="box-content">
+                    <h2 class="blog-title">{{ post.title }}</h2>
+                    <span class="blog-meta">
+                        Posted on {{ post.created_at|date:"F j, Y" }} by {{ post.author.first_name }} {{ post.author.last_name }} with {{ post.comment_count }} comments
+                    </span>
+                    <p>
+                        {{ post.body }}
+                    </p>
+                </div>
+            </div> <!-- /.blog-info -->
+            <div class="blog-tags col-md-12">
+                <span>Tags</span>: 
+                <a href="#">Developmet</a>
+                <a href="#">Inspiration</a>
+                <a href="#">Web Design</a>
+                <a href="#">Creative UI</a>
+                <a href="#">templatemo</a>
+            </div> <!-- /.blog-tags -->
+        </div> <!-- /.row -->
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="comment-heading">Total Comments ({{ comments.count }})</h2>
+                <div class="box-content">
+                    <div class="comment">
+                        <div class="comment-inner">
+
+                            {% for comment in comments %}
+                            <div class="comment-body">
+                                <h4>
+                                    {{comment.name}}
+                                </h4>
+                                <span>
+                                    {{ comment.created_at|date:"F j, Y" }} - {{ comment.created_at|timesince }} ago
+                                </span>
+                                <p>
+                                    {{comment.text}}
+                                     <a href="#">Reply</a></p>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div> <!-- /.comment -->
+                </div> <!-- /.box-content -->
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <div class="row">
+            <div class="col-md-12 comment-form">
+                <h2 class="comment-heading">Leave a Comment</h2>
+                <div class="box-content">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <p>
+                            {{ form.name.label_tag }}
+                            {{ form.name }}
+                        </p>
+                        <p>
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </p>
+                        <p>
+                            {{ form.website.label_tag }}
+                            {{ form.website }}
+                        </p>
+                        <p>
+                            {{ form.text.label_tag }}
+                            {{ form.text }}
+                        </p>
+                        <input type="submit" class="mainBtn" id="submit-comment" value="Submit Comment" />
+                    </form>
+                </div> <!-- /.box-content -->
+            </div> <!-- /.comment-form -->
+        </div> <!-- /.row -->
+         <!-- /.row -->
+    </div> <!-- /.inner-content -->
+</div> <!-- /.content-wrapper -->
+
+
+
+
+
+
+
+  
+{% endblock content %}

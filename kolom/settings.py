@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     'accounts',
-    'comments_ratings',
     'posts',
     'search_filter',
 ]
