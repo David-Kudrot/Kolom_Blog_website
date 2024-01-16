@@ -1,11 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+
+USER_CATEGORIES = [
+        ('admin', 'Admin'),
+        ('author', 'Author'),
+        ('reader', 'Reader'),
+    ]
+
+
 class UserAccountModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image=models.ImageField(upload_to="accounts/images")
-    phone_no = models.CharField(max_length=15)
-    
+    user_category = models.CharField(max_length=10, choices=USER_CATEGORIES, null=True, blank=True)
+
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return f"{self.user.first_name} {self.user.last_name} - {self.user_category}"

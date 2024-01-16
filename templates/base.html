@@ -37,10 +37,10 @@
 
         <header class="site-header container-fluid">
             <div class="top-header">
-                <div class="logo col-md-6 col-sm-6">
-                    <h1><a href="index.html"><em>Kolom</em></a></h1>
+                <div class="logo col-md-6 col-sm-6 py-3 ">
+                    <h1><a href="{% url 'home' %}"><em>Kolom</em></a></h1>
                 </div> <!-- /.logo -->
-                <div class="social-top col-md-6 col-sm-6">
+                <div class="social-top col-md-6 col-sm-6 py-3">
                     <ul>
                         <li><a href="#" class="fa fa-facebook"></a></li>
                         <li><a href="#" class="fa fa-twitter"></a></li>
@@ -74,8 +74,19 @@
                             <li><a href="#">Pages</a>
                             </li>
                             <li><a href="contact.html" class="">Contact</a></li>
-                            <li><a href="{% url 'register' %}" class="btn btn-primary p-2">Sign up</a></li>
-                            <li><a href="" class="btn btn-success p-2">Sign in</a></li>
+                            {% if request.user.is_authenticated %}
+                      
+                            <li><a href="" class="border border-1 rounded-2 border-info bg-transparent p-2">Profile</a>
+                            </li>
+                            <li><a href="{% url 'logout' %}" class="border border-1 border-success bg-transparent p-2 rounded-2">Sign out</a></li>
+                            
+
+                            {% else %}
+
+                            <li><a href="{% url 'register' %}" class="border border-1 rounded-2 border-info bg-transparent p-2">Sign up</a></li>
+                            <li><a href="{% url 'login' %}" class="border border-1 rounded-2 border-success bg-transparent p-2">Sign in</a></li>
+
+                            {% endif %}
                         </ul>
                     </div> <!-- /.menu-wrapper -->
                 </div> <!-- /.row -->
@@ -83,13 +94,26 @@
             <div id="responsive-menu">
                 <ul>
                     <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="#">Blog</a>
-                    </li>
-                    <li><a href="#">Pages</a>
-                    </li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Pages</a></li>
                     <li><a href="contact.html" class="">Contact</a></li>
-                    <li><a href="{% url 'register' %}" class="btn btn-primary">Sign up</a></li>
-                    <li><a href="" class="btn btn-success">Sign in</a></li>
+
+                    {% if request.user.is_authenticated %}
+                      
+                    <li><a href="" class="btn btn-primary bg-transparent">Profile</a>
+                        <ul>
+                            <li><a href="{% url 'logout' %}" class="">Sign out</a></li>
+                        </ul>
+                    </li>
+
+                    {% else %}
+
+                    <li><a href="{% url 'register' %}" class="btn btn-primary bg-transparent">Sign up</a></li>
+                    <li><a href="{% url 'login' %}" class="btn btn-success bg-transparent">Sign in</a></li>
+
+                    {% endif %}
+                    
+                    
                 </ul>
             </div>
         </header> <!-- /.site-header -->
