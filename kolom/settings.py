@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import dj_database_url
 import environ
 env = environ.Env()
 environ.Env.read_env()
@@ -27,12 +28,12 @@ SECRET_KEY = env("SECRET_KEY")
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e7)cy8ii$+0cf8i7=w9y@bj+z&3@x9o2x1meeb2zc2fa43#_l0'
+# SECRET_KEY = 'django-insecure-e7)cy8ii$+0cf8i7=w9y@bj+z&3@x9o2x1meeb2zc2fa43#_l0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -93,13 +94,19 @@ WSGI_APPLICATION = 'kolom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+DATABASES = {
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://thefairyland_user:6XQZlN1Q6zLdmBwCQXcyQeKA6y9qrY9c@dpg-cm9heuvqd2ns73dq4d80-a.oregon-postgres.render.com/thefairyland',
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
