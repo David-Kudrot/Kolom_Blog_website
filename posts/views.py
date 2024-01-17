@@ -133,6 +133,7 @@ def create_post(request):
                  
             print(form.cleaned_data)
             post.save()
+            form.save_m2m()
             messages.success(request, 'Post created successfully.')
             return redirect('home')
         else:
