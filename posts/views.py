@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Post, Library, Comment
+from .models import Post, Library, Comment, Category
 from django.contrib.auth.models import User, Group
 from django.contrib import messages
 from .forms import PostForm, CommentForm
@@ -10,6 +10,10 @@ from django.http import HttpResponseForbidden, HttpResponseBadRequest
 #for email
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+# from accounts
+from accounts.models import UserAccountModel
+from accounts.forms import ProfilePictureForm
+
 
 
 # class PostListView(View):
@@ -100,8 +104,25 @@ class LibraryView(View):
 class ProfileView(View):
     def get(self, request):
         user = request.user
-        return render(request, 'profile.html', {'user': user})
+        user_account = UserAccountModel.objects.get(user=user)
+        profile_picture_form = ProfilePictureForm(instance=user_account)
+        return render(request, 'profile.html', {'user': user, 'user_account': user_account, 'profile_picture_form': profile_picture_form})
 
+    def post(self, request):
+        user = request.user
+        user_account = UserAccountModel.objects.get(user=user)
+        profile_picture_form = ProfilePictureForm(request.POST, request.FILES, instance=user_account)
+
+        if profile_picture_form.is_valid():
+            profile_picture_form.save()
+            messages.success(request, 'Profile picture updated successfully.')
+            return redirect('profile')
+
+        return render(request, 'profile.html', {'user': user, 'user_account': user_account, 'profile_picture_form': profile_picture_form})
+    
+    
+    
+    
 @login_required
 def create_post(request):
     if request.method == 'POST':
@@ -109,6 +130,7 @@ def create_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
+                 
             print(form.cleaned_data)
             post.save()
             messages.success(request, 'Post created successfully.')
@@ -118,6 +140,7 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, 'create_post.html', {'form': form})
+
 
 
 

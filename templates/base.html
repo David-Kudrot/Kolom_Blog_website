@@ -127,6 +127,44 @@
           
         {% endblock content %}
 
+
+
+<hr style="border: 1px solid #000; font-weight: bold;">
+        
+
+<!-- Footer -->
+<footer class="site-footer pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Contact Us</h4>
+                <p>Email: kolom@gmail.com</p>
+                <p>Phone: +000 12515 54165</p>
+            </div>
+            <div class="col-md-4">
+                <h4 class=" mb-3">Follow Us</h4>
+                <ul class="social-icons d-flex gap-4 ">
+                    <li><a href="#" class="fa fa-facebook fs-4 text-primary "></a></li>
+                    <li><a href="#" class="fa fa-twitter fs-4 text-success "></a></li>
+                    <li><a href="#" class="fa fa-linkedin fs-4 text-info "></a></li>
+                    <li><a href="#" class="fa fa-google-plus fs-4 text-dark "></a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Pages</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+
+
        
 
         <script src="{% static 'js/vendor/jquery-1.11.0.min.js' %}"></script>

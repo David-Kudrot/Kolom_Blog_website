@@ -1,20 +1,81 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block link %}
+
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+  
+{% endblock link %}
+
 
 {% block content %}
-
-
-
 <div class="container">
-    <div class="row d-flex justify-content-end">
-        <div class="col-md-3">
+    <div class="row d-flex flex-column  justify-content-end">
+        
+        <div class="col-md-3 d-flex align-items-center justify-content-center ">
+            <!-- Display the user's profile picture -->
+            <div id="profilePictureContainer">
+                {% if user_account.profile_picture %}
+                    <img src="{{ user_account.profile_picture.url }}" alt="Profile Picture" class="img-fluid">
+                {% else %}
+                    <p>No profile picture available.</p>
+                {% endif %}
+            </div>
+
+            <!-- Form for updating profile picture -->
+            <div id="profilePictureFormContainer" style="display: none;">
+                <form method="post" enctype="multipart/form-data" id="profilePictureForm">
+                    {% csrf_token %}
+                    {{ profile_picture_form.as_p }}
+                    <button type="submit" class="btn btn-sm border-1 border-info btn-secondary">Save</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-3 my-3 text-center ">
+            <ul>
+                <li class="fs-6 text-dark">
+                    Name : {{user.first_name}} {{user.last_name}}
+                </li>
+                <li class="fs-6 text-dark">
+                    User Category : {{user_account.user_category}}
+                </li>
+                <li class="fs-6 text-dark">
+                    Email : {{user.email}}
+                </li>
+                
+            </ul>
+        </div>
+        <div class="col-md-3 pb-4">
+            <h4 class="my-4">Follow Me</h4>
+            <ul class="social-icons d-flex gap-4 ps-3">
+                <li><a href="#" class="fa fa-facebook fs-4 text-primary "></a></li>
+                <li><a href="#" class="fa fa-twitter fs-4 text-success "></a></li>
+                <li><a href="#" class="fa fa-linkedin fs-4 text-info "></a></li>
+                <li><a href="#" class="fa fa-google-plus fs-4 text-dark "></a></li>
+            </ul>
+        </div>
+
+
+        <div class="col-md-3 d-flex align-items-center justify-content-center">
             <a href="{% url 'library' %}" class="btn btn-sm border-1 border-info btn-secondary">Favourite/Saved Post</a>
-            <a href="" class="btn btn-sm border-1 border-info btn-secondary">Edit Profile</a>
+            <a href="#" class="btn btn-sm border-1 border-info btn-secondary" id="editProfileBtn">Edit Profile</a>
         </div>
     </div>
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const editProfileBtn = document.getElementById("editProfileBtn");
+    const profilePictureContainer = document.getElementById("profilePictureContainer");
+    const profilePictureFormContainer = document.getElementById("profilePictureFormContainer");
 
+    editProfileBtn.addEventListener("click", function() {
+        profilePictureContainer.style.display = "none";
+        profilePictureFormContainer.style.display = "block";
+    });
+});
+</script>
 
-  
 {% endblock content %}

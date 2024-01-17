@@ -30,7 +30,7 @@ def register(request):
             
             #saving user category
             user_category = register_form.cleaned_data['user_category']
-            UserAccountModel.objects.create(user=user, user_category=user_category)
+            UserAccountModel.objects.create(user=user, user_category=user_category, profile_picture=request.FILES.get('profile_picture'))
             
             
             token = default_token_generator.make_token(user)

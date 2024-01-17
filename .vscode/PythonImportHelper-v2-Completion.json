@@ -24,6 +24,30 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -49,6 +73,22 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -683,6 +723,22 @@
         "documentation": {}
     },
     {
+        "label": "UserAccountModel",
+        "importPath": "accounts.models",
+        "description": "accounts.models",
+        "isExtraImport": true,
+        "detail": "accounts.models",
+        "documentation": {}
+    },
+    {
+        "label": "ProfilePictureForm",
+        "importPath": "accounts.forms",
+        "description": "accounts.forms",
+        "isExtraImport": true,
+        "detail": "accounts.forms",
+        "documentation": {}
+    },
+    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -710,6 +766,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "accounts.migrations.0003_useraccountmodel_profile_picture",
+        "description": "accounts.migrations.0003_useraccountmodel_profile_picture",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('accounts', '0002_remove_useraccountmodel_image_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='useraccountmodel',\n            name='profile_picture',\n            field=models.ImageField(blank=True, null=True, upload_to='profile_picture/'),\n        ),",
+        "detail": "accounts.migrations.0003_useraccountmodel_profile_picture",
+        "documentation": {}
+    },
+    {
         "label": "AccountsConfig",
         "kind": 6,
         "importPath": "accounts.apps",
@@ -723,7 +788,16 @@
         "kind": 6,
         "importPath": "accounts.forms",
         "description": "accounts.forms",
-        "peekOfCode": "class RegistrationForm(UserCreationForm):\n    first_name = forms.CharField(widget=forms.TextInput(attrs={'id' : 'required'}))\n    last_name = forms.CharField(widget=forms.TextInput(attrs={'id' : 'required'}))\n    user_category = forms.ChoiceField(choices=[('', 'Select User Category'), ('admin', 'Admin'), ('author', 'Author'), ('reader', 'Reader')],\n                                      widget=forms.Select(attrs={'id': 'required'}))\n    class Meta:\n        model = User\n        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'user_category']",
+        "peekOfCode": "class RegistrationForm(UserCreationForm):\n    first_name = forms.CharField(widget=forms.TextInput(attrs={'id' : 'required'}))\n    last_name = forms.CharField(widget=forms.TextInput(attrs={'id' : 'required'}))\n    user_category = forms.ChoiceField(choices=[('', 'Select User Category'), ('admin', 'Admin'), ('author', 'Author'), ('reader', 'Reader')],\n                                      widget=forms.Select(attrs={'id': 'required'}))\n    profile_picture = forms.ImageField(required=False)\n    class Meta:\n        model = User\n        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'user_category', 'profile_picture']\nclass ProfilePictureForm(forms.ModelForm):",
+        "detail": "accounts.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ProfilePictureForm",
+        "kind": 6,
+        "importPath": "accounts.forms",
+        "description": "accounts.forms",
+        "peekOfCode": "class ProfilePictureForm(forms.ModelForm):\n    class Meta:\n        model = UserAccountModel\n        fields = ['profile_picture']",
         "detail": "accounts.forms",
         "documentation": {}
     },
@@ -732,7 +806,7 @@
         "kind": 6,
         "importPath": "accounts.models",
         "description": "accounts.models",
-        "peekOfCode": "class UserAccountModel(models.Model):\n    user = models.OneToOneField(User, on_delete=models.CASCADE)\n    user_category = models.CharField(max_length=10, choices=USER_CATEGORIES, null=True, blank=True)\n    def __str__(self):\n        return f\"{self.user.first_name} {self.user.last_name} - {self.user_category}\"",
+        "peekOfCode": "class UserAccountModel(models.Model):\n    user = models.OneToOneField(User, on_delete=models.CASCADE)\n    user_category = models.CharField(max_length=10, choices=USER_CATEGORIES, null=True, blank=True)\n    profile_picture = models.ImageField(upload_to=\"profile_picture/\", null=True, blank=True)\n    def __str__(self):\n        return f\"{self.user.first_name} {self.user.last_name} - {self.user_category}\"",
         "detail": "accounts.models",
         "documentation": {}
     },
@@ -741,7 +815,7 @@
         "kind": 5,
         "importPath": "accounts.models",
         "description": "accounts.models",
-        "peekOfCode": "USER_CATEGORIES = [\n        ('admin', 'Admin'),\n        ('author', 'Author'),\n        ('reader', 'Reader'),\n    ]\nclass UserAccountModel(models.Model):\n    user = models.OneToOneField(User, on_delete=models.CASCADE)\n    user_category = models.CharField(max_length=10, choices=USER_CATEGORIES, null=True, blank=True)\n    def __str__(self):\n        return f\"{self.user.first_name} {self.user.last_name} - {self.user_category}\"",
+        "peekOfCode": "USER_CATEGORIES = [\n        ('admin', 'Admin'),\n        ('author', 'Author'),\n        ('reader', 'Reader'),\n    ]\nclass UserAccountModel(models.Model):\n    user = models.OneToOneField(User, on_delete=models.CASCADE)\n    user_category = models.CharField(max_length=10, choices=USER_CATEGORIES, null=True, blank=True)\n    profile_picture = models.ImageField(upload_to=\"profile_picture/\", null=True, blank=True)\n    def __str__(self):",
         "detail": "accounts.models",
         "documentation": {}
     },
@@ -759,7 +833,7 @@
         "kind": 2,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "def register(request):\n    if request.method == 'POST':\n        register_form = RegistrationForm(request.POST)\n        if register_form.is_valid():\n            user = register_form.save(commit=False)\n            user.is_active=False\n            user.save()\n            #saving user category\n            user_category = register_form.cleaned_data['user_category']\n            UserAccountModel.objects.create(user=user, user_category=user_category)",
+        "peekOfCode": "def register(request):\n    if request.method == 'POST':\n        register_form = RegistrationForm(request.POST)\n        if register_form.is_valid():\n            user = register_form.save(commit=False)\n            user.is_active=False\n            user.save()\n            #saving user category\n            user_category = register_form.cleaned_data['user_category']\n            UserAccountModel.objects.create(user=user, user_category=user_category, profile_picture=request.FILES.get('profile_picture'))",
         "detail": "accounts.views",
         "documentation": {}
     },
@@ -1079,6 +1153,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "posts.migrations.0004_alter_post_author",
+        "description": "posts.migrations.0004_alter_post_author",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('posts', '0003_remove_post_comments_comment_post'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='post',\n            name='author',\n            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='author', to=settings.AUTH_USER_MODEL),",
+        "detail": "posts.migrations.0004_alter_post_author",
+        "documentation": {}
+    },
+    {
         "label": "CategoryAdmin",
         "kind": 6,
         "importPath": "posts.admin",
@@ -1101,7 +1184,7 @@
         "kind": 6,
         "importPath": "posts.forms",
         "description": "posts.forms",
-        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = ['title', 'image', 'body', 'category']\nclass CommentForm(forms.ModelForm):\n    class Meta:\n        model = Comment\n        fields = ['name', 'email', 'text']",
+        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = ['title', 'image', 'body', 'category']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.fields['category'].required = False  \nclass CommentForm(forms.ModelForm):\n    class Meta:\n        model = Comment",
         "detail": "posts.forms",
         "documentation": {}
     },
@@ -1182,7 +1265,7 @@
         "kind": 6,
         "importPath": "posts.views",
         "description": "posts.views",
-        "peekOfCode": "class ProfileView(View):\n    def get(self, request):\n        user = request.user\n        return render(request, 'profile.html', {'user': user})\n@login_required\ndef create_post(request):\n    if request.method == 'POST':\n        form = PostForm(request.POST, request.FILES)\n        if form.is_valid():\n            post = form.save(commit=False)",
+        "peekOfCode": "class ProfileView(View):\n    def get(self, request):\n        user = request.user\n        user_account = UserAccountModel.objects.get(user=user)\n        profile_picture_form = ProfilePictureForm(instance=user_account)\n        return render(request, 'profile.html', {'user': user, 'user_account': user_account, 'profile_picture_form': profile_picture_form})\n    def post(self, request):\n        user = request.user\n        user_account = UserAccountModel.objects.get(user=user)\n        profile_picture_form = ProfilePictureForm(request.POST, request.FILES, instance=user_account)",
         "detail": "posts.views",
         "documentation": {}
     },

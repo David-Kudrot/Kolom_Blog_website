@@ -5,6 +5,15 @@
     justify-content: center;
 }
 
+
+
 .comment-form input{
     width: 80%;
+}
+
+
+
+#profilePictureContainer>img{
+    width: 10rem;
+    border-radius: 50%;
 }

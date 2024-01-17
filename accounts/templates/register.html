@@ -13,8 +13,8 @@
 
 
 <div class="row">
-    <div class="col-md-12 comment-form">
-        <h2 class="comment-heading fs-3 text-center ">{{type}}</h2>
+    <div class="col-md-12 comment-form ">
+        <h2 class="comment-heading fs-3 text-center">{{type}} page</h2>
         <div class="box-content">
             <form method="post" action="" enctype="multipart/form-data" class="col-md-6">
                 {% csrf_token %}
@@ -52,6 +52,11 @@
                     {{ form.user_category.label_tag }}
                     {{ form.user_category }}
                     {{ form.user_category.errors }}
+                </p>
+                <p>
+                    {{ form.profile_picture.label_tag }}
+                    {{ form.profile_picture }}
+                    {{ form.profile_picture.errors }}
                 </p>
                 <input type="submit" class="mainBtn ms-0 bg-success text-white " id="submit-comment" value="Submit Post" />
             </form>
