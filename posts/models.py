@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from accounts.models import UserAccountModel
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=150)
@@ -17,7 +18,8 @@ class Post(models.Model):
     image = models.ImageField(upload_to="posts/photos")
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="author_name")
+    # author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="author_name")
+    author = models.ForeignKey(UserAccountModel, on_delete=models.CASCADE, related_name="author")
     category = models.ManyToManyField(Category)
     save_post = models.BooleanField(default=False, null=True, blank=True)
 
