@@ -129,7 +129,7 @@ def create_post(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
+            post.author = request.user.useraccountmodel
                  
             print(form.cleaned_data)
             post.save()
