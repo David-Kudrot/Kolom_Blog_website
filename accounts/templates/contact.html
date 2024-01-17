@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+
+
+
+
+{% block content %}
+
+
+
+
+<div class="content-wrapper">
+    <div class="inner-container container">
+        <div class="row">
+            <div class="section-header col-md-12">
+                <h2>Contact Page</h2>
+            </div> <!-- /.section-header -->
+        </div> <!-- /.row -->
+        <div class="contact-form">
+            <div class="box-content col-md-12">
+                <div class="row">
+                    <div class="col-md-7">
+                        <p>This is an example of a contact page. You can set the contact page in your themes backend and add, remove and modify the input fields, text areas, dropdowns and checkboxes from your backend as well.</p>
+                        <h3 class="contact-title">Send Us Email</h3>
+                        <div class="contact-form-inner">
+                            <form method="post" action="#" name="contactform" id="contactform">
+                                <p>
+                                    <label for="name">Your Name:</label>
+                                    <input name="name" type="text" id="name">
+                                </p>
+                                <p>
+                                    <label for="email">Email Address:</label>
+                                    <input name="email" type="text" id="email"> 
+                                </p>
+                                <p>
+                                    <label for="phone">Phone Number:</label>
+                                    <input name="phone" type="text" id="phone">   
+                                </p>
+                                <p>
+                                    <label for="comments">Your message:</label>
+                                    <textarea name="comments" id="comments"></textarea>    
+                                </p>
+                                <input type="submit" class="mainBtn" id="submit" value="Send Message" />
+                            </form>
+                        </div> <!-- /.contact-form-inner -->
+                        <div id="message"></div>
+                    </div> <!-- /.col-md-7 -->
+                    <div class="col-md-5">
+                        <div class="googlemap-wrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d235968.49756107415!2d88.40130626625692!3d22.466342148200596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1705492320293!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                        </div>
+                    </div> <!-- /.col-md-5 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.box-content -->
+        </div> <!-- /.contact-form -->
+    </div> <!-- /.inner-content -->
+</div> <!-- /.content-wrapper -->
+
+
+
+
+
+
+  
+{% endblock content %}

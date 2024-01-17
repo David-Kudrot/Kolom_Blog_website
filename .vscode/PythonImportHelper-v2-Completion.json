@@ -257,22 +257,6 @@
         "documentation": {}
     },
     {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "forms",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
         "label": "forms",
         "importPath": "django",
         "description": "django",
@@ -377,14 +361,6 @@
         "documentation": {}
     },
     {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -422,14 +398,6 @@
         "description": "django.urls",
         "isExtraImport": true,
         "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "LogoutView",
-        "importPath": "django.contrib.auth.views",
-        "description": "django.contrib.auth.views",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.views",
         "documentation": {}
     },
     {
@@ -494,6 +462,14 @@
         "description": "django.shortcuts",
         "isExtraImport": true,
         "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "TemplateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
         "documentation": {}
     },
     {
@@ -824,8 +800,17 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "urlpatterns = [\n    path('register/', views.register, name='register'),\n    path('active/<uid64>/<token>/', views.activate, name = 'activate'),\n    path('login/', views.user_login, name='login'),\n    path('logout/', views.user_logout, name='logout'),\n    # path('logout/', views.LogoutView.as_view(), name='user_logout'),\n    # path('profile/', views.profile, name='profile'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('register/', views.register, name='register'),\n    path('active/<uid64>/<token>/', views.activate, name = 'activate'),\n    path('login/', views.user_login, name='login'),\n    path('logout/', views.user_logout, name='logout'),\n    path('contact/', views.ContactView.as_view(), name='contact_us'),\n]",
         "detail": "accounts.urls",
+        "documentation": {}
+    },
+    {
+        "label": "ContactView",
+        "kind": 6,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "class ContactView(TemplateView):\n    template_name = 'contact.html'",
+        "detail": "accounts.views",
         "documentation": {}
     },
     {
@@ -862,24 +847,6 @@
         "description": "accounts.views",
         "peekOfCode": "def user_logout(request):\n    if request.user.is_authenticated:\n        User = get_user_model()\n        try:\n            # Check if the user has an associated auth_token\n            auth_token = request.user.auth_token\n            auth_token.delete()\n        except User.auth_token.RelatedObjectDoesNotExist:\n            pass  # No auth_token associated with the user\n        logout(request)",
         "detail": "accounts.views",
-        "documentation": {}
-    },
-    {
-        "label": "CommentsRatingsConfig",
-        "kind": 6,
-        "importPath": "comments_ratings.apps",
-        "description": "comments_ratings.apps",
-        "peekOfCode": "class CommentsRatingsConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'comments_ratings'",
-        "detail": "comments_ratings.apps",
-        "documentation": {}
-    },
-    {
-        "label": "CommentForm",
-        "kind": 6,
-        "importPath": "comments_ratings.forms",
-        "description": "comments_ratings.forms",
-        "peekOfCode": "class CommentForm(forms.ModelForm):\n    class Meta:\n        model = Comment\n        fields = ['name', 'email', 'text']",
-        "detail": "comments_ratings.forms",
         "documentation": {}
     },
     {

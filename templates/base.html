@@ -78,7 +78,7 @@
                             </li>
                             <li><a href="#">Pages</a>
                             </li>
-                            <li><a href="contact.html" class="">Contact</a></li>
+                            <li><a href="{% url 'contact_us' %}" class="">Contact</a></li>
                             {% if request.user.is_authenticated %}
                       
                             <li><a href="{% url 'profile' %}" class="border border-1 rounded-2 border-info bg-transparent p-2">Profile</a>
@@ -101,7 +101,7 @@
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Pages</a></li>
-                    <li><a href="contact.html" class="">Contact</a></li>
+                    <li><a href="{% url 'contact_us' %}" class="">Contact</a></li>
 
                     {% if request.user.is_authenticated %}
                       

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views.generic import TemplateView
 from .forms import RegistrationForm
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -108,3 +109,7 @@ def user_logout(request):
         logout(request)
         messages.success(request, "Logged out successfully!")
         return redirect('login')
+    
+    
+class ContactView(TemplateView):
+    template_name = 'contact.html'

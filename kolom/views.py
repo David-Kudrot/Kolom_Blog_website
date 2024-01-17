@@ -28,14 +28,10 @@ class Home(View):
         if category_filter:
             posts = posts.filter(category__name=category_filter)
 
-        # # Apply author filter
-        # if author_filter:
-        #     print(f"Author filter: {author_filter}")
-        #     posts = posts.filter(author__username__icontains=author_filter)
-
-        # Apply date filter (assuming date_filter is in the format 'YYYY-MM-DD')
         if date_filter:
             posts = posts.filter(created_at__date=date_filter)
 
         
         return render(request, 'home.html', {'posts': posts, 'categories': categories})
+    
+    
