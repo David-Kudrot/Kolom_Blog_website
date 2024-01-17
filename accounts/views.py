@@ -80,6 +80,7 @@ def user_login(request):
                 print(token)
                 print(_)
                 login(request, user)
+                messages.success(request, "Logged in successfully!")
                 return redirect('home')
             else:
                 messages.warning(request, 'Login information incorrect')
@@ -104,6 +105,6 @@ def user_logout(request):
             auth_token.delete()
         except User.auth_token.RelatedObjectDoesNotExist:
             pass  # No auth_token associated with the user
-        
         logout(request)
+        messages.success(request, "Logged out successfully!")
         return redirect('login')

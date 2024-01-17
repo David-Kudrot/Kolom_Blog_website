@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post Saved Confirmation</title>
+</head>
+<body>
+    <p>Hello {{ user.username }},</p>
+    <p>We wanted to let you know that the following post has been successfully saved:</p>
+    
+    <p><strong>Title:</strong> {{ post.title }}</p>
+    <p><strong>Author:</strong> {{ post.author.username }}</p>
+    <p><strong>Content:</strong> {{ post.body }}</p>
+    
+    <p>Thank you for using our service!</p>
+    <p>Best regards,<br>KOLOM</p>
+</body>
+</html>

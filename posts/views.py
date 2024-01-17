@@ -7,6 +7,10 @@ from django.contrib.auth.models import User, Group
 from django.contrib import messages
 from .forms import PostForm, CommentForm
 from django.http import HttpResponseForbidden, HttpResponseBadRequest
+#for email
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+
 
 # class PostListView(View):
 #     def get(self, request):
@@ -47,13 +51,29 @@ class PostDetailView(View):
 
 
 
+
+
 @login_required
 def save_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     library = Library.objects.get_or_create(user=request.user)[0]
     library.saved_posts.add(post)
-    messages.success(request, 'Post saved successfully.')
+
+    if request.user.is_authenticated:
+        # Email sending
+        email_subject = "Post Saved Confirmation"
+        email_body = render_to_string('post_save_email.html', {'post': post, 'user': request.user})
+        user_email = request.user.email
+        print(user_email)
+        email = EmailMultiAlternatives(email_subject, '', to=[user_email])
+        email.attach_alternative(email_body, "text/html")
+        email.send()
+        messages.success(request, 'Post saved successfully.')
+    else:
+        messages.error(request, 'Authentication error. Please log in.')
+
     return redirect('post_detail', pk=pk)
+
 
 
 
@@ -72,6 +92,34 @@ class LibraryView(View):
             library.saved_posts.add(post)
             return redirect('library')  
         return HttpResponseBadRequest("Invalid request")
+
+
+
+
+@method_decorator(login_required, name='dispatch')
+class ProfileView(View):
+    def get(self, request):
+        user = request.user
+        return render(request, 'profile.html', {'user': user})
+
+@login_required
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            print(form.cleaned_data)
+            post.save()
+            messages.success(request, 'Post created successfully.')
+            return redirect('home')
+        else:
+            print(form.errors)
+    else:
+        form = PostForm()
+    return render(request, 'create_post.html', {'form': form})
+
+
 
 
 @login_required
@@ -93,27 +141,6 @@ def edit_post(request, pk):
     return render(request, 'edit_post.html', {'form': form, 'post': post, 'type': 'Edit Post'})
 
 
-
-
-@method_decorator(login_required, name='dispatch')
-class ProfileView(View):
-    def get(self, request):
-        user = request.user
-        return render(request, 'profile.html', {'user': user})
-
-@login_required
-def create_post(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-            messages.success(request, 'Post created successfully.')
-            return redirect('post_list')
-    else:
-        form = PostForm()
-    return render(request, 'create_post.html', {'form': form})
 
 
 @login_required

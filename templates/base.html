@@ -24,6 +24,11 @@
         <link rel="stylesheet" href="{% static 'css/animate.css' %}">
         <link rel="stylesheet" href="{% static 'css/templatemo-misc.css' %}">
         <link rel="stylesheet" href="{% static 'css/templatemo-style.css' %}">
+
+        {% block link %}
+          
+        {% endblock link %}
+
         <script src="{% static 'js/vendor/modernizr-2.6.1-respond-1.1.0.min.js' %}"></script>
     </head>
     <body>
@@ -128,6 +133,19 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
         <script src="{% static 'js/plugins.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
+
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+            {% for i in messages %}
+            <script>
+            Swal.fire({
+                text: "{{i}}",
+                icon: "{{i.tags}}",
+            });
+            </script>
+            {% endfor %}
+
 
         <!-- Preloader -->
         <script type="text/javascript">

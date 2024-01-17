@@ -1,37 +1,42 @@
-{% extends 'base.html' %}
-{%  load crispy_forms_tags %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block link %}
+
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+  
+{% endblock link %}
+
 {% block content %}
 
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert alert-success alert-dismissible fade show mx-auto mt-2 pb-0" role="alert" style="width: 40%;">
-      <p class="text-center">{{ message }}</p>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  {% endfor %}
-{% endif %}
-
-
-<div class="row d-flex justify-content-center align-items-center">
-  <div class="col-md-8 d-flex flex-column align-items-center">
-    <h2 class="comment-heading">
-      {{type}}
-    </h2>
-    <form method="post" action="">
-      {% csrf_token %}
-      <p>
-          {{ form.username.label_tag }} <br>
-          {{ form.username }}
-      </p>
-      <p>
-          {{ form.password.label_tag }} <br>
-          {{ form.password }}
-      </p>
-      <input type="submit" class="btn my-3 btn-success" id="submit-comment" value="Sign in" />
-  </form>
-  </div>
-</div>
 
 
 
-{% endblock %}
+<div class="row">
+    <div class="col-md-12 comment-form">
+        <h2 class="comment-heading fs-3 text-center ">{{type}}</h2>
+        <div class="box-content">
+            <form method="post" action="" enctype="multipart/form-data" class="col-md-6">
+                {% csrf_token %}
+                <p>
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    {{from.username.errors}}
+                </p>
+                <p>
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                    {{ form.password.errors }}
+                </p>
+                <input type="submit" class="mainBtn ms-0 bg-info " id="submit-comment" value="Submit Post" />
+            </form>
+        </div> <!-- /.box-content -->
+    </div> <!-- /.comment-form -->
+</div> <!-- /.row -->
+
+
+
+
+
+  
+{% endblock content %}

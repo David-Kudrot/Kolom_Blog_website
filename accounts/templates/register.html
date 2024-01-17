@@ -1,37 +1,68 @@
-{% extends 'base.html' %}
-{%  load crispy_forms_tags %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block link %}
+
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+  
+{% endblock link %}
+
 {% block content %}
 
 
 
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert alert-success alert-dismissible fade show mx-auto mt-2 pb-0" role="alert" style="width: 40%;">
-      <p class="text-center">{{ message }}</p>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  {% endfor %}
-{% endif %}
-
 
 <div class="row">
-    
-<form class="col-md-4" style="margin: auto;" method="post">
-    <h1 class="text-center fs-4">{{type}} page</h1>
-    {% csrf_token %}
-<!-- {{form | crispy}} -->
-{% for fm in form %}
+    <div class="col-md-12 comment-form">
+        <h2 class="comment-heading fs-3 text-center ">{{type}}</h2>
+        <div class="box-content">
+            <form method="post" action="" enctype="multipart/form-data" class="col-md-6">
+                {% csrf_token %}
+                <p>
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    {{from.username.errors}}
+                </p>
+                <p>
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                    {{ form.first_name.errors }}
+                </p>
+                <p>
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    {{ form.last_name.errors }}
+                </p>
+                <p>
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </p>
+                <p>
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    {{ form.password1.errors }}
+                </p>
+                <p>
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                    {{ form.password2.errors }}
+                </p>
+                <p>
+                    {{ form.user_category.label_tag }}
+                    {{ form.user_category }}
+                    {{ form.user_category.errors }}
+                </p>
+                <input type="submit" class="mainBtn ms-0 bg-success text-white " id="submit-comment" value="Submit Post" />
+            </form>
+        </div> <!-- /.box-content -->
+    </div> <!-- /.comment-form -->
+</div> <!-- /.row -->
 
-    <div class="form-group">
-        {{ fm.label_tag }}
-        {{ fm }}
-        {{ fm.errors|striptags }}
-    </div>
 
-    {% endfor %}
 
-<button class="btn btn-warning mb-5 mt-3">Submit</button>
-</form>
-</div>
 
-{% endblock %}
+
+
+  
+{% endblock content %}

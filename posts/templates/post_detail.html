@@ -29,6 +29,47 @@
                     <p>
                         {{ post.body }}
                     </p>
+
+                    <ul class="d-flex justify-content-start    ">
+                        <li> 
+                            <p>
+                                <span class="text-dark">Category : </span>  
+                                {% for category in post.category.all %}
+                                    {{ category.name }}
+                                {% endfor %}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="ms-5"> <span class="text-black ">Author : </span> 
+                                {{post.author.first_name}} {{post.author.last_name}}
+                            </p>
+                        </li>
+                    </ul>
+
+
+                    <div class="row">
+                        
+                        
+
+                        {% if user.is_authenticated and user == post.author %}
+
+                        <div class="col-md-3 d-flex flex-row">
+                            <!-- Display the Edit button for the post author -->
+                            <form method="get" action="{% url 'edit_post' pk=post.pk %}">
+                                <button type="submit" class="btn btn-success rounded-0 me-3">Edit</button>
+                            </form>
+                        
+                            <!-- Display the Delete button for the post author -->
+                            <form method="post" action="{% url 'delete_post' pk=post.pk %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-info rounded-0  " onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                            </form>
+
+                        </div>
+                        {% endif %}
+
+                        
+                    </div>
                 </div>
             </div> <!-- /.blog-info -->
             <div class="blog-tags col-md-12">

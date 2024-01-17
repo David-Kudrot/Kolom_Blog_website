@@ -1,0 +1,10 @@
+
+
+.box-content{
+    display: flex;
+    justify-content: center;
+}
+
+.comment-form input{
+    width: 80%;
+}
