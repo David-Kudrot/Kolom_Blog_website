@@ -24,7 +24,7 @@
                 <div class="box-content">
                     <h2 class="blog-title">{{ post.title }}</h2>
                     <span class="blog-meta">
-                        Posted on {{ post.created_at|date:"F j, Y" }} by {{ post.author.first_name }} {{ post.author.last_name }} with {{ post.comment_count }} comments
+                        Posted on {{ post.created_at|date:"F j, Y" }} by {{ post.author_name.first_name }} {{ post.author.last_name }} with {{ post.comment_count }} comments
                     </span>
                     <p>
                         {{ post.body }}
@@ -40,8 +40,8 @@
                             </p>
                         </li>
                         <li>
-                            <p class="ms-5"> <span class="text-black ">Author : </span> 
-                                {{post.author.first_name}} {{post.author.last_name}}
+                            <p class="ms-5"> <span class="text-black "> </span> 
+                                {{post.author_name.first_name}} {{post.author.last_name}}
                             </p>
                         </li>
                     </ul>
