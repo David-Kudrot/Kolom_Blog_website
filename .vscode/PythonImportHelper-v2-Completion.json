@@ -32,19 +32,11 @@
         "documentation": {}
     },
     {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
         "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -73,6 +65,38 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -676,6 +700,22 @@
         "documentation": {}
     },
     {
+        "label": "UserAccountModel",
+        "importPath": "accounts.models",
+        "description": "accounts.models",
+        "isExtraImport": true,
+        "detail": "accounts.models",
+        "documentation": {}
+    },
+    {
+        "label": "UserAccountModel",
+        "importPath": "accounts.models",
+        "description": "accounts.models",
+        "isExtraImport": true,
+        "detail": "accounts.models",
+        "documentation": {}
+    },
+    {
         "label": "login_required",
         "importPath": "django.contrib.auth.decorators",
         "description": "django.contrib.auth.decorators",
@@ -705,14 +745,6 @@
         "description": "django.http",
         "isExtraImport": true,
         "detail": "django.http",
-        "documentation": {}
-    },
-    {
-        "label": "UserAccountModel",
-        "importPath": "accounts.models",
-        "description": "accounts.models",
-        "isExtraImport": true,
-        "detail": "accounts.models",
         "documentation": {}
     },
     {
@@ -1138,6 +1170,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "posts.migrations.0005_alter_post_author",
+        "description": "posts.migrations.0005_alter_post_author",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('posts', '0004_alter_post_author'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='post',\n            name='author',\n            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='author_name', to=settings.AUTH_USER_MODEL),",
+        "detail": "posts.migrations.0005_alter_post_author",
+        "documentation": {}
+    },
+    {
         "label": "CategoryAdmin",
         "kind": 6,
         "importPath": "posts.admin",
@@ -1160,7 +1201,7 @@
         "kind": 6,
         "importPath": "posts.forms",
         "description": "posts.forms",
-        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = ['title', 'image', 'body', 'category']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.fields['category'].required = False  \nclass CommentForm(forms.ModelForm):\n    class Meta:\n        model = Comment",
+        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = ['title', 'image', 'body', 'category']\nclass CommentForm(forms.ModelForm):\n    class Meta:\n        model = Comment\n        fields = ['name', 'email', 'text']",
         "detail": "posts.forms",
         "documentation": {}
     },
@@ -1187,7 +1228,7 @@
         "kind": 6,
         "importPath": "posts.models",
         "description": "posts.models",
-        "peekOfCode": "class Post(models.Model):\n    title = models.CharField(max_length=150)\n    image = models.ImageField(upload_to=\"posts/photos\")\n    body = models.TextField()\n    created_at = models.DateTimeField(auto_now_add=True)\n    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name=\"author\")\n    category = models.ManyToManyField(Category)\n    save_post = models.BooleanField(default=False, null=True, blank=True)\n    def __str__(self) -> str:\n        return self.title",
+        "peekOfCode": "class Post(models.Model):\n    title = models.CharField(max_length=150)\n    image = models.ImageField(upload_to=\"posts/photos\")\n    body = models.TextField()\n    created_at = models.DateTimeField(auto_now_add=True)\n    # author = models.ForeignKey(User, on_delete=models.CASCADE, related_name=\"author_name\")\n    author = models.ForeignKey(UserAccountModel, on_delete=models.CASCADE, related_name=\"author\")\n    category = models.ManyToManyField(Category)\n    save_post = models.BooleanField(default=False, null=True, blank=True)\n    def __str__(self) -> str:",
         "detail": "posts.models",
         "documentation": {}
     },
@@ -1259,7 +1300,7 @@
         "kind": 2,
         "importPath": "posts.views",
         "description": "posts.views",
-        "peekOfCode": "def create_post(request):\n    if request.method == 'POST':\n        form = PostForm(request.POST, request.FILES)\n        if form.is_valid():\n            post = form.save(commit=False)\n            post.author = request.user\n            print(form.cleaned_data)\n            post.save()\n            messages.success(request, 'Post created successfully.')\n            return redirect('home')",
+        "peekOfCode": "def create_post(request):\n    if request.method == 'POST':\n        form = PostForm(request.POST, request.FILES)\n        if form.is_valid():\n            post = form.save(commit=False)\n            post.author = request.user.useraccountmodel\n            print(form.cleaned_data)\n            post.save()\n            form.save_m2m()\n            messages.success(request, 'Post created successfully.')",
         "detail": "posts.views",
         "documentation": {}
     },
