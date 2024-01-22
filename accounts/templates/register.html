@@ -4,6 +4,7 @@
 {% block link %}
 
 <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+<link rel="stylesheet" href="{% static 'css/mystyle2.css' %}">
   
 {% endblock link %}
 
@@ -11,54 +12,155 @@
 
 
 
-
-<div class="row">
-    <div class="col-md-12 comment-form ">
-        <h2 class="comment-heading fs-3 text-center">{{type}} page</h2>
-        <div class="box-content">
-            <form method="post" action="" enctype="multipart/form-data" class="col-md-6">
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+    <style>
+      .background-radial-gradient {
+        background-color: hsl(218, 41%, 15%);
+        background-image: radial-gradient(650px circle at 0% 0%,
+            hsl(218, 41%, 35%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%),
+          radial-gradient(1250px circle at 100% 100%,
+            hsl(218, 41%, 45%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%);
+      }
+  
+      #radius-shape-1 {
+        height: 220px;
+        width: 220px;
+        top: -60px;
+        left: -130px;
+        background: radial-gradient(#44006b, #ad1fff);
+        overflow: hidden;
+      }
+  
+      #radius-shape-2 {
+        border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+        bottom: -60px;
+        right: -110px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(#44006b, #ad1fff);
+        overflow: hidden;
+      }
+  
+      .bg-glass {
+        background-color: hsla(0, 0%, 100%, 0.9) !important;
+        backdrop-filter: saturate(200%) blur(25px);
+      }
+    </style>
+  
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+      <div class="row gx-lg-5 align-items-center mb-5">
+        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+          <h1 class="my-5 display-5 fw-bold ls-tight text-center " style="color: hsl(218, 81%, 95%)">Sign up
+          </h1>
+          <div class="img-rap d-flex  justify-content-center ">
+            <img src="{% static 'images/signup-image2.jpg' %}" alt="" class="img-fluid bg-transparent " width="50%">
+          </div>
+          <p class="text-center mt-5">
+            <a href="{% url 'login' %}" class="text-decoration-underline text-center mb-4">Already have account?</a>
+          </p>
+        </div>
+  
+        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+          <div class="card bg-glass">
+            <div class="card-body px-4 py-5 px-md-5">
+              <form method="post" action="" enctype="multipart/form-data">
+                <!-- 2 column grid layout with text inputs for the first and last names -->
                 {% csrf_token %}
-                <p>
+  
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">
                     {{ form.username.label_tag }}
+                    </label> <br>
                     {{ form.username }}
                     {{from.username.errors}}
-                </p>
-                <p>
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">
                     {{ form.first_name.label_tag }}
+                    </label> <br>
                     {{ form.first_name }}
-                    {{ form.first_name.errors }}
-                </p>
-                <p>
+                    {{from.first_name.errors}}
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">
                     {{ form.last_name.label_tag }}
+                    </label> <br>
                     {{ form.last_name }}
-                    {{ form.last_name.errors }}
-                </p>
-                <p>
+                    {{from.last_name.errors}}
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">
                     {{ form.email.label_tag }}
+                    </label> <br>
                     {{ form.email }}
-                    {{ form.email.errors }}
-                </p>
-                <p>
+                    {{from.email.errors}}
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">
                     {{ form.password1.label_tag }}
+                    </label> <br>
                     {{ form.password1 }}
-                    {{ form.password1.errors }}
-                </p>
-                <p>
+                    {{from.password1.errors}}
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">
                     {{ form.password2.label_tag }}
+                    </label> <br>
                     {{ form.password2 }}
-                    {{ form.password2.errors }}
-                </p>
-                <p>
-                    {{ form.user_category.label_tag }}
+                    {{from.password2.errors}}
+                </div>
+  
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example4">                 {{ form.user_category.label_tag }}
+                    </label> <br>
                     {{ form.user_category }}
                     {{ form.user_category.errors }}
-                </p>
-                <input type="submit" class="mainBtn ms-0 bg-success text-white " id="submit-comment" value="Submit Post" />
-            </form>
-        </div> <!-- /.box-content -->
-    </div> <!-- /.comment-form -->
-</div> <!-- /.row -->
-
+                </div>
+  
+                
+  
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">
+                  Sign up
+                </button>
+  
+                <!-- Register buttons -->
+                <div class="text-center">
+                  <p>or sign up with:</p>
+                  <a href="" type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+  
+                  <a href="" type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+  
+                  <a href="" type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fa fa-github"></i>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->
 
 
 

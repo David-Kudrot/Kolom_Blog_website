@@ -25,7 +25,7 @@ urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('blogs/', Blogs.as_view(), name='blogs'),
     path('blogs', Blogs.as_view(), name='post_list'),
-    path('category/<slug:category_slug>/', Home.as_view(), name='home_category'),
+    path('category/<slug:category_slug>/', Blogs.as_view(), name='home_category'),
     path('accounts/', include('accounts.urls')),
     path('posts/', include('posts.urls')),
 ]
