@@ -2,8 +2,15 @@ from django.shortcuts import render
 from django.views import View
 from posts.models import Post, Category
 from django.db.models import Q
+from django.views.generic import TemplateView
 
-class Home(View):
+
+class Home(TemplateView):
+    template_name = 'home.html'
+    
+
+
+class Blogs(View):
     def get(self, request, category_slug=None):
         posts = Post.objects.all()
 
@@ -32,6 +39,6 @@ class Home(View):
             posts = posts.filter(created_at__date=date_filter)
 
         
-        return render(request, 'home.html', {'posts': posts, 'categories': categories})
+        return render(request, 'blogs.html', {'posts': posts, 'categories': categories})
     
     

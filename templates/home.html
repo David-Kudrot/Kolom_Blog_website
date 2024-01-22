@@ -8,119 +8,12 @@
 
 
 
-
-<div class="container">
-    <form method="get" action="{% url 'post_list' %}" style="margin: auto;">
-        <input type="text" name="q" placeholder="Search">
-        <select name="category">
-            <option value="" selected>Filter by Category</option>
-            {% for category in categories %}
-                <option value="{{ category.name }}">{{ category.name }}</option>
-            {% endfor %}
-        </select>
-        <input type="date" name="date" placeholder="Filter by Date">
-        <button type="submit" class="btn border-1 rounded-0 border-success">Search</button>
-    </form>
-</div>
-
-
-<div class="content-wrapper">
-    <div class="inner-container container">
-        <div class="row">
-            <div class="section-header col-md-12 d-flex justify-content-between ">
-                <h2>All Blogs</h2>
-                {% if request.user.is_authenticated %}
-                    <a href="{% url 'create_post' %}" class="fs-5 text-success border px-2 border-dark  ">Create Blog</a>
-                {% else %}
-                    <a href="{% url 'login' %}" class="fs-5 text-success border px-2 border-dark  ">Create Blog</a>
-                {% endif %}
-            </div> <!-- /.section-header -->
-        </div> <!-- /.row -->
-        <div class="projects-holder-3">
-            <div class="filter-categories">
-                <ul class="project-filter">
-                    <li class="filter" data-filter="all">
-                        <a href="{% url 'home' %}" class="">
-                            <span class="bg-secondary border-0">
-                                All
-                            </span>
-                        </a>
-                    </li>
-                    {% for category in categories %}
-                    <li class="filter" data-filter="all">
-                        <a href="{% url 'home_category' category.slug %}" class="">
-                            <span class="bg-secondary border-0">
-                                {{category.name}}
-                            </span>
-                        </a>
-                    </li>
-                    {% endfor %}
-                    
-                </ul>
-            </div>
-            <div class="projects-holder">
-                <div class="row">
-                    {% if posts %}
-                      
-
-                    {% for post in posts %}
-
-                    <div class="col-md-4 project-item mix design">
-                        <div class="project-thumb">
-                            <img src="{{ post.image.url }}" alt="">
-                            <div class="overlay-b">
-                                <div class="overlay-inner">
-                                    <a href="images/projects/project_1.jpg" class="fancybox fa fa-expand" title="Project Title Here"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-content project-detail">
-                            <h2>
-                                <a target="_blank" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
-                            </h2>
-                            <p>{{ post.body|truncatewords:15 }}</p>
-
-                            
-                            <ul class="d-flex justify-content-between   ">
-                                <li> 
-                                    <p>
-                                        <span class="text-dark">Category : </span>  
-                                        {% for category in post.category.all %}
-                                            {{ category.name }}
-                                        {% endfor %}
-                                    </p>
-                                </li>
-                                <li>
-                                    <p class=""> <span class="text-black ">Author :</span> 
-                                        {{post.author.user.first_name}} {{post.author.user.last_name}}
-                                    </p>
-                                </li>
-                            </ul>
-
-                            
+<h1>This is home page</h1>
 
 
 
-                            {% if user.is_authenticated %}
 
 
-                            <a href="{% url 'save_post' post.pk %}" class="btn btn-sm border-1  border-info">Save Post</a>
-                            {% endif %}
-                        </div>
-                    </div> <!-- /.project-item -->
-                      
-                    {% endfor %}
 
 
-                    {% else%}
-                    <h1 class="text-center">No post available</h1>
-                    {% endif %}
-                </div> <!-- /.row -->
-                <div class="load-more">
-                </div>
-            </div> <!-- /.projects-holder -->
-        </div> <!-- /.projects-holder-2 -->
-    </div> <!-- /.inner-content -->
-</div> <!-- /.content-wrapper -->
-  
 {% endblock content %}
