@@ -80,7 +80,7 @@
                             <li><a href="{% url 'contact_us' %}" class="">Contact</a></li>
                             {% if request.user.is_authenticated %}
                       
-                            <li><a href="{% url 'profile' %}" class="border border-1 rounded-2 border-info bg-transparent p-2">Profile</a>
+                            <li><a href="{% url 'profile' %}" class="border border-1 rounded-2 border-info bg-transparent p-2">Dashboard</a>
                             </li>
                             <li><a href="{% url 'logout' %}" class="border border-1 border-success bg-transparent p-2 rounded-2">Sign out</a></li>
                             
@@ -103,7 +103,7 @@
 
                     {% if request.user.is_authenticated %}
                       
-                    <li><a href="{% url 'profile' %}" class="btn btn-primary bg-transparent">Profile</a>
+                    <li><a href="{% url 'profile' %}" class="btn btn-primary bg-transparent">Dashboard</a>
                     </li>
                     <li><a href="{% url 'logout' %}" class="btn btn-primary bg-transparent">Sign out</a></li>
 

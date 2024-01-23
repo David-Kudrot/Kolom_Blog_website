@@ -5,8 +5,12 @@ from django.db.models import Q
 from django.views.generic import TemplateView
 
 
-class Home(TemplateView):
-    template_name = 'home.html'
+class Home(View):
+    def get(self, request, category_slug=None):
+        posts = Post.objects.all()
+        categories = Category.objects.all()
+        
+        return render(request, 'home.html', {'posts': posts, 'categories': categories})
     
 
 
