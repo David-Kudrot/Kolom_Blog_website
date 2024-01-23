@@ -1317,7 +1317,7 @@
         "kind": 2,
         "importPath": "posts.views",
         "description": "posts.views",
-        "peekOfCode": "def create_post(request):\n    if request.method == 'POST':\n        form = PostForm(request.POST, request.FILES)\n        if form.is_valid():\n            post = form.save(commit=False)\n            post.author = request.user.useraccountmodel\n            print(form.cleaned_data)\n            post.save()\n            form.save_m2m()\n            messages.success(request, 'Post created successfully.')",
+        "peekOfCode": "def create_post(request):\n    if request.method == 'POST':\n        form = PostForm(request.POST, request.FILES)\n        if form.is_valid():\n            post = form.save(commit=False)\n            # Ensure the user is logged in before accessing useraccountmodel\n            if request.user.is_authenticated:\n                user_account, created = UserAccountModel.objects.get_or_create(user=request.user)\n                post.author = user_account\n            else:",
         "detail": "posts.views",
         "documentation": {}
     },

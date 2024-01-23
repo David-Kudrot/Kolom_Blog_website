@@ -129,9 +129,17 @@ def create_post(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user.useraccountmodel
-                 
-            print(form.cleaned_data)
+
+            # Ensure the user is logged in before accessing useraccountmodel
+            if request.user.is_authenticated:
+                user_account, created = UserAccountModel.objects.get_or_create(user=request.user)
+                post.author = user_account
+            else:
+                # Handle the case where the user is not logged in
+                # You can customize this behavior based on your requirements
+                messages.error(request, 'You need to be logged in to create a post.')
+                return redirect('login')  # Redirect to the login page or handle appropriately
+
             post.save()
             form.save_m2m()
             messages.success(request, 'Post created successfully.')
@@ -141,9 +149,6 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, 'create_post.html', {'form': form})
-
-
-
 
 
 @login_required
