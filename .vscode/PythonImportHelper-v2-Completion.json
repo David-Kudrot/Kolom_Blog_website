@@ -497,6 +497,14 @@
         "documentation": {}
     },
     {
+        "label": "TemplateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
         "label": "default_token_generator",
         "importPath": "django.contrib.auth.tokens",
         "description": "django.contrib.auth.tokens",
@@ -1111,7 +1119,7 @@
         "kind": 5,
         "importPath": "kolom.urls",
         "description": "kolom.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', Home.as_view(), name='home'),\n    path('', Home.as_view(), name='post_list'),\n    path('category/<slug:category_slug>/', Home.as_view(), name='home_category'),\n    path('accounts/', include('accounts.urls')),\n    path('posts/', include('posts.urls')),\n]\nurlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', Home.as_view(), name='home'),\n    path('blogs/', Blogs.as_view(), name='blogs'),\n    path('blogs', Blogs.as_view(), name='post_list'),\n    path('category/<slug:category_slug>/', Blogs.as_view(), name='home_category'),\n    path('accounts/', include('accounts.urls')),\n    path('posts/', include('posts.urls')),\n]\nurlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
         "detail": "kolom.urls",
         "documentation": {}
     },
@@ -1120,7 +1128,16 @@
         "kind": 6,
         "importPath": "kolom.views",
         "description": "kolom.views",
-        "peekOfCode": "class Home(View):\n    def get(self, request, category_slug=None):\n        posts = Post.objects.all()\n        if category_slug:\n            category = Category.objects.get(slug=category_slug)\n            posts = posts.filter(category=category)\n        categories = Category.objects.all()\n        # add search query\n        search_query = request.GET.get('q', '')\n        category_filter = request.GET.get('category', '')",
+        "peekOfCode": "class Home(TemplateView):\n    template_name = 'home.html'\nclass Blogs(View):\n    def get(self, request, category_slug=None):\n        posts = Post.objects.all()\n        if category_slug:\n            category = Category.objects.get(slug=category_slug)\n            posts = posts.filter(category=category)\n        categories = Category.objects.all()\n        # add search query",
+        "detail": "kolom.views",
+        "documentation": {}
+    },
+    {
+        "label": "Blogs",
+        "kind": 6,
+        "importPath": "kolom.views",
+        "description": "kolom.views",
+        "peekOfCode": "class Blogs(View):\n    def get(self, request, category_slug=None):\n        posts = Post.objects.all()\n        if category_slug:\n            category = Category.objects.get(slug=category_slug)\n            posts = posts.filter(category=category)\n        categories = Category.objects.all()\n        # add search query\n        search_query = request.GET.get('q', '')\n        category_filter = request.GET.get('category', '')",
         "detail": "kolom.views",
         "documentation": {}
     },

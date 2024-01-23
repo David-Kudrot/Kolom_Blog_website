@@ -29,14 +29,60 @@
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-
-    <div class="heading py-4" style="background:  linear-gradient(to right, rgb(65, 209, 72), rgb(57, 57, 216), rgb(35, 5, 145));">
-        <h1 class="text-center display-4 fw-bold">
-            Welcome to Kolom <br>
-            <span class="fs-2 text-white">Where Your Journey Begins!</span>
-        </h1>
+    <!-- swiffy header -->
+    <div class="swiffy-slider slider-item-show3 slider-nav-dark slider-nav-visible slider-nav-outside slider-item-snapstart my-3 slider-nav-sm my-xl-5 slider-indicators-square slider-indicators-outside slider-indicators-dark slider-nav-animation-slideup slider-nav-animation slider-item-first-visible">
+    <div class="slider-container">
+        <div class="slide-visible">
+            <div>
+                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 11:12</h3>
+                <strong>Never seen before:</strong> Billion people taking clickbait on SoMe every hour. <small class="text-muted text-uppercase">People</small>
+            </div>
+        </div>
+        <div class="slide-visible">
+            <div>
+                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 10:02</h3>
+                <span class="badge bg-warning text-dark"><strong>BREAKING</strong></span> Great and superfast websites can be made with simple technology. <small class="text-muted text-uppercase">Religion</small>
+            </div>
+        </div>
+        <div class="slide-visible">
+            <div>
+                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:48</h3>
+                Google, Facebook and Apple announces they will respect privacy. <small class="text-muted text-uppercase">Corp BS</small>
+            </div>
+        </div>
+        <div class="">
+            <div>
+                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:32</h3>
+                <span class="badge bg-success"><strong>Style</strong></span> Get fantastic lunch recipes for developers working at home. <small class="text-muted text-uppercase">Awesome</small>
+            </div>
+        </div>
+        <div class="">
+            <div>
+                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:28</h3>
+                <strong>Just released:</strong> an even more fat-ass framework that can render markup <small class="text-muted text-uppercase">Music</small>
+            </div>
+        </div>
+        <div class="">
+            <div>
+                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 08:08</h3>
+                Swiffy Slider is very nice, neat and fast. <small class="text-muted text-uppercase">Simple</small>
+            </div>
+        </div>
     </div>
 
+    <button type="button" class="slider-nav" aria-label="Go left"></button>
+    <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+    <div class="slider-indicators" style="justify-content:right;margin-left: 3rem;">
+        <button class="active" aria-label="Go to slide"></button>
+        <button aria-label="Go to slide" class=""></button>
+        <button aria-label="Go to slide" class=""></button>
+        <button aria-label="Go to slide" class=""></button>
+    </div>
+
+</div>
+
+    
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="main-banner header-text">
@@ -384,6 +430,34 @@
       }
     </script>
 
+
+
+    <!-- swiffy js -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Set the interval (in milliseconds) for auto-sliding
+        var interval = 3000; // 5 seconds
+
+        function autoSlide() {
+            // Trigger the click event on the next slide button
+            $(".slider-nav-next").click();
+        }
+
+        // Set the interval for auto-sliding
+        var slideInterval = setInterval(autoSlide, interval);
+
+        // Pause auto-sliding on hover
+        $(".swiffy-slider").hover(
+            function () {
+                clearInterval(slideInterval);
+            },
+            function () {
+                slideInterval = setInterval(autoSlide, interval);
+            }
+        );
+    });
+</script>
 
 
 
