@@ -176,6 +176,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1193,6 +1209,15 @@
         "description": "posts.migrations.0005_alter_post_author",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('posts', '0004_alter_post_author'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='post',\n            name='author',\n            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='author_name', to=settings.AUTH_USER_MODEL),",
         "detail": "posts.migrations.0005_alter_post_author",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "posts.migrations.0006_alter_post_author",
+        "description": "posts.migrations.0006_alter_post_author",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('accounts', '0003_useraccountmodel_profile_picture'),\n        ('posts', '0005_alter_post_author'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='post',\n            name='author',\n            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='author', to='accounts.useraccountmodel'),",
+        "detail": "posts.migrations.0006_alter_post_author",
         "documentation": {}
     },
     {
