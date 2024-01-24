@@ -52,20 +52,20 @@ Kolom is a Django-based blog website that enables users to register, write, and 
     python manage.py runserver
 Visit http://127.0.0.1:8000/ in your browser.
 
-##### Configuration:
+### Configuration:
   - Update your email settings in settings.py for email notifications.
 
-##### Usage :
+### Usage :
   - Register an account on the website.
   - Activate your account by clicking the activation link sent to your email.
   - Log in using your credentials.
   - Explore the blog, save interesting posts, and update your profile photo.
   - If you have the author role, you can write and publish blog posts.
 
-##### Contributing: 
+### Contributing: 
   If you would like to contribute to the project, please follow the Contributing Guidelines.
   
-##### License :
+### License :
    - This project is licensed under the MIT License - see the LICENSE file for details.
      ````bash
      Make sure to replace placeholders like `your-username`, `kolom-blog`, and others with the actual information specific to your project. Additionally, consider creating the referenced files like `CONTRIBUTING.md` and `LICENSE` with relevant content.
