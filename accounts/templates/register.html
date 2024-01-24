@@ -88,18 +88,23 @@
                     {{from.username.errors}}
                 </div>
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example3">
-                    {{ form.first_name.label_tag }}
-                    </label> <br>
-                    {{ form.first_name }}
-                    {{from.first_name.errors}}
-                </div>
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example3">
-                    {{ form.last_name.label_tag }}
-                    </label> <br>
-                    {{ form.last_name }}
-                    {{from.last_name.errors}}
+                    
+                    <div class="row">
+                      <div class="col-6">
+                        <label class="form-label" for="form3Example3">
+                          {{ form.first_name.label_tag }}
+                          </label> <br>
+                          {{ form.first_name }}
+                          {{from.first_name.errors}}
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label" for="form3Example3">
+                          {{ form.last_name.label_tag }}
+                          </label> <br>
+                          {{ form.last_name }}
+                          {{from.last_name.errors}}
+                      </div>
+                    </div>
                 </div>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3">
@@ -109,18 +114,23 @@
                     {{from.email.errors}}
                 </div>
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example3">
-                    {{ form.password1.label_tag }}
-                    </label> <br>
-                    {{ form.password1 }}
-                    {{from.password1.errors}}
-                </div>
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example3">
-                    {{ form.password2.label_tag }}
-                    </label> <br>
-                    {{ form.password2 }}
-                    {{from.password2.errors}}
+                    
+                    <div class="row">
+                      <div class="col-6">
+                        <label class="form-label" for="form3Example3">
+                          {{ form.password1.label_tag }}
+                          </label> <br>
+                          {{ form.password1 }}
+                          {{from.password1.errors}}
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label" for="form3Example3">
+                          {{ form.password2.label_tag }}
+                          </label> <br>
+                          {{ form.password2 }}
+                          {{from.password2.errors}}
+                      </div>
+                    </div>
                 </div>
   
                 <!-- Password input -->
