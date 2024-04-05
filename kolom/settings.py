@@ -96,19 +96,19 @@ WSGI_APPLICATION = 'kolom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgres://thefairyland_txrk_user:x981DVaoZx90mFDNo2pf9pSOgUhAoGIP@dpg-co80su4f7o1s738ogqr0-a.oregon-postgres.render.com/thefairyland_txrk',
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Feel free to alter this value to suit your needs.
+#         default='postgres://thefairyland_txrk_user:x981DVaoZx90mFDNo2pf9pSOgUhAoGIP@dpg-co80su4f7o1s738ogqr0-a.oregon-postgres.render.com/thefairyland_txrk',
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
