@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'kolom.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgres://thefairyland_user:6XQZlN1Q6zLdmBwCQXcyQeKA6y9qrY9c@dpg-cm9heuvqd2ns73dq4d80-a.oregon-postgres.render.com/thefairyland',
+        default='postgres://thefairyland_txrk_user:x981DVaoZx90mFDNo2pf9pSOgUhAoGIP@dpg-co80su4f7o1s738ogqr0-a.oregon-postgres.render.com/thefairyland_txrk',
     )
 }
 
