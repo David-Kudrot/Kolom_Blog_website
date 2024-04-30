@@ -27,14 +27,13 @@ SECRET_KEY = env("SECRET_KEY")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-e7)cy8ii$+0cf8i7=w9y@bj+z&3@x9o2x1meeb2zc2fa43#_l0'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://kolom-blog.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://kolom.onrender.com','https://*.127.0.0.1']
 
 
 

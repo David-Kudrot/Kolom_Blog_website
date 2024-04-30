@@ -86,7 +86,7 @@
                     {% endfor %}
                   </span>
                 </div>
-                <a href="post-details.html"><h4>
+                <a href="{% url 'post_detail' post.pk %}"><h4>
                   {{ post.title}}
                 </h4></a>
                 <ul class="post-info">
